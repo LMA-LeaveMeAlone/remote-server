@@ -22,7 +22,7 @@ module.exports = {
       },
       (err, user) => {
         if(err){
-          res.status(500).send({error: err, user: user})
+          res.status(500).send({error: err, message: 'Error when getting user'})
           console.error(err);
         }
         if(!user){
