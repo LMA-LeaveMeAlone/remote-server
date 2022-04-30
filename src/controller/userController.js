@@ -22,8 +22,8 @@ module.exports = {
       },
       (err, user) => {
         if(err){
-          res.status(500).send('Internal error.')
-          throw new Error(err)
+          res.status(500).send(err)
+          console.error(err);
         }
         if(!user){
           res.status(404).send('This email or username doesn\'t exists.')

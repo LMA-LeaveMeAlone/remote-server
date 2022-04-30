@@ -11,7 +11,6 @@ const PORT = process.env.SERVER_PORT || 80
 app.use(require('cors')())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-console.log(require('./routes/record'));
 const appRoot = '/leavemealone'
 // Set up API routes
 app.use(`${appRoot}/user`, require('./routes/user'))
