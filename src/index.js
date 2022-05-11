@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const swaggerUi = require('swagger-ui-express')
 const JSONContract = require('./contract.json')
 
-// Injects .env file in process.env
 const PORT = process.env.SERVER_PORT || 80
 // Middlewares
 app.use(require('cors')())
