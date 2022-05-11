@@ -1,5 +1,6 @@
 require('dotenv').config()
 const app = require('express')()
+const { default: axios } = require('axios')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const swaggerUi = require('swagger-ui-express')
@@ -16,6 +17,7 @@ app.use(`${appRoot}/user`, require('./routes/user'))
 app.use(`${appRoot}/record`, require('./routes/record'))
 app.use(`${appRoot}/docs`, swaggerUi.serve, swaggerUi.setup(JSONContract))
 app.get(appRoot, (req, res) => {
+  console.log('hey');
   res.send('Root of remote server')
 })
 
@@ -29,6 +31,7 @@ async function main() {
   }
   app.listen(PORT, () => {
     console.log(`OK -- Server started on port ${PORT}`)
-  })
+})
 }
 main()
+module.exports = {app};

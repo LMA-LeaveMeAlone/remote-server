@@ -1,45 +1,45 @@
 const mongoose = require('mongoose')
-const express = require('express');
-const axios = require('axios');
+const request = require('supertest')
+const { app } = require('../index')
 require('dotenv').config()
 
 
 describe('remote-server tests launched', function() {
-  var app,
-      date;
 
-  this.timeout(15000);
-
-  before((done) => {
-    app = express();
-    app.listen(process.env.SERVER_PORT, (err) => {
-      if (err) { return done(err); }
-      done();
-    });
-  });
+  this.timeout(10000);
 
   beforeEach(() => {
     date = new Date();
   });
 
   after(() => {
-    console.log("Tests passed successfully");
+    console.log("Tests finished");
   });
 
   afterEach(() => {
     console.log("At", date);
   });
 
-  it('should connect to mongodb database', (done) => {
+  it('should connect to mongodb database', done => {
     mongoose.connect(process.env.MONGODB_URL).then(() => {
       done();
     }, err => {
       throw new Error(err.message);
     })
   });
-  
-  it('should connect to aws api', (done) => {
-    
+
+  it('should return root of remote server', done => {
+    request(app).get(`/leavemealone`).then(res => {
+      done();
+    });
+  });
+
+  it('should return records', done => {
+    request(app).get(`/leavemealone/record`).then(res => {
+      done();
+    }).catch(err => {
+      throw new Error(err.message);
+    });
   });
 
 });
