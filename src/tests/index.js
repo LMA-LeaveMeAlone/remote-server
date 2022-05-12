@@ -33,13 +33,4 @@ describe('remote-server tests launched', function() {
       done();
     });
   });
-
-  it('should return records', done => {
-    request(app).get(`/leavemealone/record`).then(res => {
-      done();
-    }).catch(err => {
-      throw new Error(err.message);
-    });
-  });
-
 });
